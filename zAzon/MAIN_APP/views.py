@@ -17,7 +17,9 @@ def raccoons(request):
 
 
 def magic(request):
-    return render(request, "boards/magic.html")
+    threads = Thread.objects.filter(board='Magic')
+    cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
+    return render(request, "boards/magic.html", {"threads": threads, "cnt": cnt})
 
 
 def chill(request):

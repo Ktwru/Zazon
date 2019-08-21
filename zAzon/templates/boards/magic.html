@@ -1,3 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Magic{% endblock title %}
 {% block header %}Magic{% endblock header %}
+{% block content %}
+<div>
+    {%for thread in threads%}
+        <li>{{thread}} - {{thread.login}} {{cnt}}</li>
+    {% endfor %}</div>
+<div>
+    {%for i in cnt%}
+        <li>{{i}} posts</li>
+    {% endfor %}
+</div>
+
+{% endblock content %}
