@@ -21,7 +21,7 @@ urlpatterns = [
     path('TVs', views.TVs),
     path('Raccoons', views.raccoons),
     path('Magic', views.magic),
-    path('Chill', views.magic),
+    path('Chill', views.chill),
     path('', views.main_page),
     path('admin/', admin.site.urls),
 ]
