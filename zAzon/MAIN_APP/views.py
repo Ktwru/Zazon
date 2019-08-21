@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from .models import *
 
 def main_page(request):
-    return render(request, "main_page.html")
+    user_count = User.objects.count()
+    post_count = Post.objects.count()
+    thread_count = Thread.objects.count()
+    return render(request, "main_page.html", {"user_count":user_count, "post_count":post_count, "thread_count": thread_count})
 
 
 def TVs(request):
