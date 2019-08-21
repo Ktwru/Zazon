@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from MAIN_APP import views
+from django.urls import re_path
 
 urlpatterns = [
-    path('TVs', views.TVs),
-    path('Raccoons', views.raccoons),
-    path('Magic', views.magic),
-    path('Chill', views.chill),
-    path('', views.main_page),
-    path('admin/', admin.site.urls),
+    re_path(r'^TVs', views.TVs),
+    re_path(r'^Raccoons', views.raccoons),
+    re_path(r'^Magic', views.magic),
+    re_path(r'^Chill', views.chill),
+    re_path('', views.main_page),
+    path('admin', admin.site.urls),
 ]
