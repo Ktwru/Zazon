@@ -8,19 +8,7 @@ def main_page(request):
     return render(request, "main_page.html", {"user_count":user_count, "post_count":post_count, "thread_count": thread_count})
 
 
-def TVs(request):
-    return render(request, "boards/TVs.html")
-
-
-def raccoons(request):
-    return render(request, "boards/raccoons.html")
-
-
-def magic(request):
-    threads = Thread.objects.filter(board='Magic')
+def magic(request, board):
+    threads = Thread.objects.filter(board=board)
     cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
-    return render(request, "boards/magic.html", {"threads": threads, "cnt": cnt})
-
-
-def chill(request):
-    return render(request, "boards/chill.html")
+    return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
