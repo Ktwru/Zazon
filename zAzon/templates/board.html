@@ -21,7 +21,7 @@
 Threads:
 <div>
     {%for thread in threads%}
-        <li>{{thread}} - {{thread.login}}</li>
+    <li>{{thread}} - {{thread.login}}</li> <input value="Go in thread..." type="button" onclick="location.href='?Thread={{thread}}'" />
     {% endfor %}</div>
 <div>
     {%for i in cnt%}
