@@ -22,7 +22,7 @@ class Thread(models.Model):
 
 
 class Post(models.Model):
-    thread = models.ManyToManyField(Thread)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     post = models.TextField()
     login = models.CharField(max_length=30)
     date = models.DateTimeField(auto_now=True)
