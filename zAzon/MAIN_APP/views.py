@@ -15,7 +15,8 @@ def board(request, board):
     return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
 
 
-def thread(request, board, thread):
-
-    return render(request, "thread.html", {"board": board, "thread": thread})
+def thread(request, board, thread_id):
+    post = Post.objects.filter(thread_id=thread_id)
+    thread = Thread.objects.get(id=thread_id)
+    return render(request, "thread.html", {"board": board, "thread": thread, "posts": post})
 

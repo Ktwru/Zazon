@@ -15,18 +15,13 @@
     {% endif %}
 </div>
 
-
 {% endblock header %}
 {% block content %}
-Threads:
+<div>{{thread.thread_date}} - {{thread.thread}} - {{thread.login}}</div>
+<div>{{thread.op_post}}</div>
 <div>
-    {%for thread in threads%}
-    <li>{{thread}} - {{thread.login}}</li> <input value="Go in thread..." type="button" onclick="location.href='?Thread={{thread}}'" />
-    {% endfor %}</div>
-<div>
-    {%for i in cnt%}
-        <li>{{i}} posts</li>
+    {% for post in posts %}
+    <li>{{post.date}} - {{post.post}} - {{post.login}}</li>
     {% endfor %}
 </div>
-
 {% endblock content %}
