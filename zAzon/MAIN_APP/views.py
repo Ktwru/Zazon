@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.http import HttpResponse
 
 def main_page(request):
     user_count = User.objects.count()
@@ -12,3 +13,9 @@ def board(request, board):
     threads = Thread.objects.filter(board=board)
     cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
     return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
+
+
+def thread(request, board, thread):
+
+    return render(request, "thread.html", {"board": board, "thread": thread})
+

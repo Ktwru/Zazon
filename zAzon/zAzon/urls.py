@@ -19,7 +19,8 @@ from MAIN_APP import views
 from django.urls import re_path
 
 urlpatterns = [
+    path('admin', admin.site.urls),
+    re_path(r'(?P<board>\w+)/Thread=(?P<thread>.+)', views.thread),
     re_path(r'(?P<board>\w+)', views.board),
     re_path('', views.main_page),
-    path('admin', admin.site.urls),
 ]
