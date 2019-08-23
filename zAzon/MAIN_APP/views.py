@@ -8,7 +8,7 @@ def main_page(request):
     return render(request, "main_page.html", {"user_count":user_count, "post_count":post_count, "thread_count": thread_count})
 
 
-def magic(request, board):
+def board(request, board):
     threads = Thread.objects.filter(board=board)
     cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
     return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})

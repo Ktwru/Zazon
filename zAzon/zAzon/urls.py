@@ -19,7 +19,7 @@ from MAIN_APP import views
 from django.urls import re_path
 
 urlpatterns = [
-    re_path(r'(?P<board>\w+)', views.magic),
+    re_path(r'(?P<board>\w+)', views.board),
     re_path('', views.main_page),
     path('admin', admin.site.urls),
 ]
