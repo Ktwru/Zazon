@@ -21,5 +21,3 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now=True)
     pic = models.ImageField(null=True, blank=True)
 
-
-

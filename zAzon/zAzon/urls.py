@@ -20,7 +20,6 @@ from django.urls import re_path
 from django.urls import include
 
 urlpatterns = [
-    re_path(r'users/(?P<user>.+)', views.user_page),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin', admin.site.urls),
     re_path(r'(?P<board>\w+)/Thread=(?P<thread_id>.+)', views.thread),
