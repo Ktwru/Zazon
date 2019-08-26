@@ -29,3 +29,5 @@ def user_page(request, user):
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
     return render(request, "user_page.html", {"details": details})
+
+

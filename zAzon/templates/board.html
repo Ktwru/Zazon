@@ -21,7 +21,8 @@
 Threads:
 <div>
     {%for thread in threads%}
-    <li>{{thread.thread_date}} - {{thread}} - {{thread.login}}</li> <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
+    <li>{{thread.thread_date}} - {{thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></li>
+    <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
     {% endfor %}</div>
 <div>
     {%for i in cnt%}

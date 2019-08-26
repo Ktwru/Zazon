@@ -17,11 +17,11 @@
 
 {% endblock header %}
 {% block content %}
-<div>{{thread.thread_date}} - {{thread.thread}} - {{thread.login}}</div>
+<div>{{thread.thread_date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
 <div>{{thread.op_post}}</div>
 <div>
     {% for post in posts %}
-    <li>{{post.date}} - {{post.post}} - {{post.login}}</li>
+    <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
     {% endfor %}
 </div>
 {% endblock content %}
