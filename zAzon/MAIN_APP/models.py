@@ -21,3 +21,10 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now=True)
     pic = models.ImageField(null=True, blank=True)
 
+
+class User_det(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    info = models.TextField(null=True, blank=True)
+    status = models.TextField(max_length=250, null=True, blank=True)
+    pic = models.ImageField(null=True, blank=True)
