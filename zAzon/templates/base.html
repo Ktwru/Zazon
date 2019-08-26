@@ -16,6 +16,14 @@
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
+    <div>
+        {% if user.is_authenticated %}
+            <li>User: {{ user.get_username }}</li>
+            <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        {% endif %}
+    </div>
     <div><img src="{% static "images/S1.png" %}" alt = "Test"></div>
 </body>
 </html>
