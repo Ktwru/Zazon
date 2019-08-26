@@ -22,9 +22,4 @@ class Post(models.Model):
     pic = models.ImageField(null=True, blank=True)
 
 
-class User_info(models.Model):
-    login = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, null=True, blank=True)
-    info = models.TextField(null=True, blank=True)
-    status = models.TextField(max_length=200, null=True, blank=True)
-    user_pic = models.ImageField(null=True, blank=True)
+

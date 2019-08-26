@@ -24,3 +24,7 @@ def thread(request, board, thread_id):
     thread = Thread.objects.get(id=thread_id)
     return render(request, "thread.html", {"board": board, "thread": thread, "posts": post})
 
+
+def user_page(request, user):
+    user_info = User_info.objects.get(username='Jabber')
+    return render(request, "user_page.html", {"user_info": user_info})
