@@ -45,7 +45,8 @@ def register(request):
             name1 = request.POST.get("name")
             info1 = request.POST.get("info")
             status1 = request.POST.get("status")
-            new_user_det = User_det(name=name1, info=info1, status=status1)
+            new_user_det = User_det(username=new_user, name=name1, info=info1, status=status1)
+            new_user_det.save()
             return render(request, "registration/registration_complete.html")
         else:
             return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2, "error": "Passwords do not match!"})
