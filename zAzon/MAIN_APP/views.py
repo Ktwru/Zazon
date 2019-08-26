@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.http import HttpResponse
+from .forms import RegStep1, RegStep2
+from django.contrib.auth.models import User
+
 
 def main_page(request):
     user_count = User.objects.count()
@@ -31,3 +34,20 @@ def user_page(request, user):
     return render(request, "user_page.html", {"details": details})
 
 
+def register(request):
+    if request.method == 'POST':
+        if request.POST.get('password1') == request.POST.get('password2'):
+            username1 = request.POST.get("username")
+            password1 = request.POST.get("password1")
+            email1 = request.POST.get("email")
+            new_user = User(username=username1, password=password1, email=email1)
+            new_user.save()
+            name1 = request.POST.get("name")
+            info1 = request.POST.get("info")
+            status1 = request.POST.get("status")
+            new_user_det = User_det(name=name1, info=info1, status=status1)
+            return render(request, "registration/registration_complete.html")
+        else:
+            return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2, "error": "Passwords do not match!"})
+    else:
+        return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2})

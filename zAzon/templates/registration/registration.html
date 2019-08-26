@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+{% block header %}Registration{% endblock header %}
+{% block content %}
+{{error}}
+<form method = "POST">
+    {% csrf_token %}
+<table>
+    {{step1}}
+</table>
+<table>
+    {{step2}}
+</table>
+    <input type="submit" value="confirm">
+</form>
+{% endblock content %}
