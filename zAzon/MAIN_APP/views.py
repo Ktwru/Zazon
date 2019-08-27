@@ -31,7 +31,26 @@ def thread(request, board, thread_id):
 def user_page(request, user):
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
-    return render(request, "user_page.html", {"details": details})
+    if request.user.is_authenticated and str(request.user.username) == str(details.username):
+        user_check = True
+    else:
+        user_check = False
+    return render(request, "user_page.html", {"details": details, "user_check": user_check})
+
+
+def edit(request):
+    username = request.user.username
+    ri = User.objects.get(username=username)
+    if request.method == 'POST':
+        name1 = request.POST.get("name")
+        info1 = request.POST.get("info")
+        status1 = request.POST.get("status")
+        User_det.objects.filter(username=ri).update(name=name1, info=info1, status=status1)
+        return user_page(request, username)
+    else:
+        initial = User_det.objects.get(username_id=ri.id)
+        form = RegStep2(initial={'info': initial.info, 'status': initial.status, 'name': initial.name})
+    return render(request, "registration/edit.html", {"form": form, "username": username})
 
 
 def register(request):
@@ -53,3 +72,6 @@ def register(request):
             return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2, "error": "Passwords do not match!"})
     else:
         return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2})
+
+
+

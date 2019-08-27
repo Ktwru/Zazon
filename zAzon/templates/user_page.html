@@ -15,4 +15,10 @@
         <tr><th>pic:</th><th>{{details.pic}}</th></tr>
     </table>
 
+{% if user_check == True %}
+
+    <p><a href="/users/{{details.username}}/edit">Edit...</a></p>
+
+{% endif %}
+
 {% endblock content %}
