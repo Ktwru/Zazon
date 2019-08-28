@@ -19,8 +19,7 @@ def main_page(request):
 def board(request, board):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         threads = Thread.objects.filter(board=board)
-        #cnt = {ir: Post.objects.filter(thread=ir).count() for ir in threads}
-        cnt = [Post.objects.filter(thread=thread) for thread in threads]
+        cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
         if request.method == 'POST':
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
