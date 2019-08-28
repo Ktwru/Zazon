@@ -24,4 +24,16 @@
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
     {% endfor %}
 </div>
+{% if user.is_authenticated %}
+<div>
+    Post:
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{NewPost}}
+        </table>
+        <input type="submit" value="confirm">
+    </form>
+</div>
+{% endif %}
 {% endblock content %}

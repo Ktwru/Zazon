@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from .models import *
 from django.http import *
-from .forms import RegStep1, RegStep2, NewThread
+from .forms import RegStep1, RegStep2, NewThread, NewPost
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
 
 
 def main_page(request):
@@ -14,7 +13,7 @@ def main_page(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
-    return render(request, "main_page.html", {"user_count":user_count, "post_count":post_count, "thread_count": thread_count, "num_visits": num_visits})
+    return render(request, "main_page.html", {"user_count": user_count, "post_count": post_count, "thread_count": thread_count, "num_visits": num_visits})
 
 
 def board(request, board):
@@ -38,7 +37,14 @@ def thread(request, board, thread_id):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         post = Post.objects.filter(thread_id=thread_id)
         thread = Thread.objects.get(id=thread_id)
-        return render(request, "thread.html", {"board": board, "thread": thread, "posts": post})
+        if request.method == 'POST':
+            post = request.POST.get('post')
+            login = User.objects.get(username=request.user.username)
+            new_post = Post.objects.create(thread=thread, post=post, login=login)
+            post = Post.objects.filter(thread_id=thread_id)
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost})
+        else:
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
