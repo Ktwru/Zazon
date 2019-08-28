@@ -19,7 +19,7 @@ def main_page(request):
 def board(request, board):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         threads = Thread.objects.filter(board=board)
-        cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
+        cnt = {thread: Post.objects.filter(thread=thread).count() for thread in threads}
         if request.method == 'POST':
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
@@ -37,14 +37,16 @@ def thread(request, board, thread_id):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         post = Post.objects.filter(thread_id=thread_id)
         thread = Thread.objects.get(id=thread_id)
+        status = User_det.objects.get
+        
         if request.method == 'POST':
             post = request.POST.get('post')
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login)
             post = Post.objects.filter(thread_id=thread_id)
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost})
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost, "status": status})
         else:
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost})
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost, "status": status})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
