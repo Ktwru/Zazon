@@ -23,10 +23,14 @@ Threads:
     {%for thread in threads%}
     <li>{{thread.thread_date}} - {{thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></li>
     <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
+    {{cnt.thread}}---
     {% endfor %}</div>
 <div>
     {%for i in cnt%}
-        <li>{{i}} posts</li>
+        <li>{{i}} posts {{cnt.i}}</li>
+    {% endfor %}
+    {%for i in cnt%}
+        <li>{{i}} posts </li>
     {% endfor %}
 </div>
 {% if user.is_authenticated %}
