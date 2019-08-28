@@ -14,9 +14,6 @@ class RegStep2(forms.Form):
     status = forms.CharField(label="Status", widget=forms.Textarea, required=False, max_length=250)
 
 
-#class NewThread(forms.Form):
- #   thread = models.CharField(max_length=100)
-  #  board = models.CharField(max_length=100)
-   # login = models.ForeignKey(User, on_delete=models.PROTECT)
-    #op_post = models.TextField()
-    #thread_date = models.DateTimeField(auto_now=True)
+class NewThread(forms.Form):
+    thread = forms.CharField(label="Thread name:", max_length=100, min_length=1)
+    op_post = forms.CharField(label="Op-post:", min_length=1, widget=forms.Textarea)

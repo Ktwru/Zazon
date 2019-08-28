@@ -29,5 +29,16 @@ Threads:
         <li>{{i}} posts</li>
     {% endfor %}
 </div>
-
+{% if user.is_authenticated %}
+<div>
+    New Thread:
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{NewThread}}
+        </table>
+        <input type="submit" value="confirm">
+    </form>
+</div>
+{% endif %}
 {% endblock content %}

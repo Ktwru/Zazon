@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.http import *
-from .forms import RegStep1, RegStep2
+from .forms import RegStep1, RegStep2, NewThread
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 
 def main_page(request):
@@ -20,7 +21,15 @@ def board(request, board):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         threads = Thread.objects.filter(board=board)
         cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
-        return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
+        if request.method == 'POST':
+            thread = request.POST.get('thread')
+            op_post = request.POST.get('op_post')
+            login = User.objects.get(username=request.user.username)
+            new_thread = Thread.objects.create(thread=thread, board=board, login=login, op_post=op_post)
+            red = str(board) + '/Thread=' + str(new_thread.id)
+            return HttpResponsePermanentRedirect(red)
+        else:
+            return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board, "NewThread": NewThread})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
