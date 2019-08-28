@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from django.http import HttpResponse
+from django.http import *
 from .forms import RegStep1, RegStep2
 from django.contrib.auth.models import User
 
@@ -17,15 +17,21 @@ def main_page(request):
 
 
 def board(request, board):
-    threads = Thread.objects.filter(board=board)
-    cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
-    return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
+    if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
+        threads = Thread.objects.filter(board=board)
+        cnt = [Post.objects.filter(thread=thread).count() for thread in threads]
+        return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board})
+    else:
+        return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
 
 def thread(request, board, thread_id):
-    post = Post.objects.filter(thread_id=thread_id)
-    thread = Thread.objects.get(id=thread_id)
-    return render(request, "thread.html", {"board": board, "thread": thread, "posts": post})
+    if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
+        post = Post.objects.filter(thread_id=thread_id)
+        thread = Thread.objects.get(id=thread_id)
+        return render(request, "thread.html", {"board": board, "thread": thread, "posts": post})
+    else:
+        return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
 
 def user_page(request, user):
