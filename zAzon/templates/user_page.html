@@ -8,11 +8,11 @@
 {% block content %}
 
     <table>
-        <tr><th>Login:</th><th>{{details.username}}</th></tr>
-        <tr><th>Name:</th><th>{{details.name}}</th></tr>
-        <tr><th>Info:</th><th>{{details.info}}</th></tr>
-        <tr><th>Status:</th><th>{{details.status}}</th></tr>
-        <tr><th>pic:</th><th>{{details.pic}}</th></tr>
+        <tr align="left"><th>Login:</th><th>{{details.username}}</th></tr>
+        <tr align="left"><th>Name:</th><th>{{details.name}}</th></tr>
+        <tr align="left"><th>Info:</th><th>{{details.info}}</th></tr>
+        <tr align="left"><th>Status:</th><th>{{details.status}}</th></tr>
+        <tr align="left"><th>pic:</th><th>{{details.pic}}</th></tr>
     </table>
 
 {% if user_check == True %}
@@ -20,5 +20,22 @@
     <p><a href="/users/{{details.username}}/edit">Edit...</a></p>
 
 {% endif %}
+<div>
+    Latest post activity:
+    <table>
+    {% for post in posts %}
+
+        <tr align="left"><th>{{post.date}}</th><th> - {{post.post}}</th><th>
+
+        {% for thread in threads %}
+            {% if post.thread == thread.thread %} in "<a href="{{thread.board}}/Thread={{thread.id}}"></a>" {% endif %}
+            {% endfor %}
+
+        </th></tr>
+
+    {% endfor %}
+    </table>
+</div>
+{% for thread in threads%}{{thread.thread}}{% endfor %}
 
 {% endblock content %}

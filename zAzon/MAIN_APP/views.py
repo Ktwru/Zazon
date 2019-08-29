@@ -19,7 +19,14 @@ def main_page(request):
 def board(request, board):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         threads = Thread.objects.filter(board=board)
-        cnt = {thread: Post.objects.filter(thread=thread).count() for thread in threads}
+        thread_list = []
+        for thread in threads:
+            thread_list.append({'date': thread.thread_date,
+                                "thread": thread.thread,
+                                "login": thread.login,
+                                "count": Post.objects.filter(thread=thread).count(),
+                                "id": thread.id})
+
         if request.method == 'POST':
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
@@ -28,7 +35,7 @@ def board(request, board):
             red = str(board) + '/Thread=' + str(new_thread.id)
             return HttpResponsePermanentRedirect(red)
         else:
-            return render(request, "board.html", {"threads": threads, "cnt": cnt, "board": board, "NewThread": NewThread})
+            return render(request, "board.html", {"threads": thread_list, "board": board, "NewThread": NewThread})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
@@ -37,8 +44,7 @@ def thread(request, board, thread_id):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         post = Post.objects.filter(thread_id=thread_id)
         thread = Thread.objects.get(id=thread_id)
-        status = User_det.objects.get
-        
+        status = {login.login: User_det.objects.get(username=User.objects.get(username=login.login)).status for login in post}
         if request.method == 'POST':
             post = request.POST.get('post')
             login = User.objects.get(username=request.user.username)
@@ -54,11 +60,13 @@ def thread(request, board, thread_id):
 def user_page(request, user):
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
+    posts = Post.objects.filter(login=user)
+    threads = Thread.objects.all()
     if request.user.is_authenticated and str(request.user.username) == str(details.username):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": posts, "threads": threads})
 
 
 def edit(request):

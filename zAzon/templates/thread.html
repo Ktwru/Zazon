@@ -22,6 +22,13 @@
 <div>
     {% for post in posts %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
+
+    {% for usr,stat in status.items %}
+    {% if usr == post.login and stat != ''%}
+    [{{stat}}]
+    {% endif %}
+    {% endfor %}
+
     {% endfor %}
 </div>
 {% if user.is_authenticated %}
