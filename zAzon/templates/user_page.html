@@ -20,18 +20,13 @@
     <p><a href="/users/{{details.username}}/edit">Edit...</a></p>
 
 {% endif %}
+
 <div>
     Latest post activity:
     <table>
     {% for post in posts %}
 
-        <tr align="left"><th>{{post.date}}</th><th> - {{post.post}}</th><th>
-
-        {% for thread in threads %}
-            {% if post.thread == thread.thread %} in "<a href="{{thread.board}}/Thread={{thread.id}}"></a>" {% endif %}
-            {% endfor %}
-
-        </th></tr>
+        <tr align="left"><th>{{post.date}}</th><th> - {{post.post}}</th><th>in <a href="{{post.ref}}">{{post.thread}}</a></th></tr>
 
     {% endfor %}
     </table>

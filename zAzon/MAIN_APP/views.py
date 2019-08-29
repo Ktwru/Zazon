@@ -66,13 +66,19 @@ def thread(request, board, thread_id):
 def user_page(request, user):
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
-    posts = Post.objects.filter(login=user)
-    threads = Thread.objects.all()
+    posts = Post.objects.filter(login=user).reverse()
+    activity = []
+    for post in posts:
+        thread = Thread.objects.get(thread=post.thread)
+        activity.append({"date": post.date,
+                         "post": post.post,
+                         "ref": '/' + str(thread.board) + '/Thread=' + str(thread.id),
+                         "thread": thread.thread})
     if request.user.is_authenticated and str(request.user.username) == str(details.username):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": posts, "threads": threads})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity})
 
 
 def edit(request):
