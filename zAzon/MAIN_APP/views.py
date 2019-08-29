@@ -85,7 +85,16 @@ def user_page(request, user):
     activity = []
 
     threads = Thread.objects.filter(login=ri.id)
-
+    u = []
+    for j in posts: u.append({"date": j.date,
+                              "content": user + ':' + j.post,
+                              "thread": 'in ' + str(j.thread),
+                              })
+    for j in threads: u. append({"date": j.date,
+                                 "content": user + " created a thread:",
+                                 "thread": str(j.thread),
+                                 })
+    i = sorted(u, key=lambda k: k['date'], reverse=True)
 
     for post in posts:
         thread = Thread.objects.get(thread=post.thread)
@@ -97,7 +106,7 @@ def user_page(request, user):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity,})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity, "i": i})
 
 
 def edit(request):
