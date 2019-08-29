@@ -7,8 +7,8 @@ class Thread(models.Model):
     board = models.CharField(max_length=100)
     login = models.ForeignKey(User, on_delete=models.PROTECT)
     op_post = models.TextField()
-    thread_date = models.DateTimeField(auto_now=True)
-    thread_pic = models.ImageField(null=True, blank=True)
+    date = models.DateTimeField(auto_now=True)
+    pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.thread
@@ -21,6 +21,9 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now=True)
     pic = models.ImageField(null=True, blank=True)
 
+    def __str__(self):
+        return self.post
+
 
 class User_det(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -28,3 +31,6 @@ class User_det(models.Model):
     info = models.TextField(null=True, blank=True)
     status = models.TextField(max_length=250, null=True, blank=True)
     pic = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.username

@@ -29,7 +29,7 @@ def board(request, board):
         threads = Thread.objects.filter(board=board)
         thread_list = []
         for thread in threads:
-            thread_list.append({'date': thread.thread_date,
+            thread_list.append({'date': thread.date,
                                 "thread": thread.thread,
                                 "login": thread.login,
                                 "count": Post.objects.filter(thread=thread).count(),
@@ -83,6 +83,10 @@ def user_page(request, user):
     details = User_det.objects.get(username_id=ri.id)
     posts = Post.objects.filter(login=user).reverse()
     activity = []
+
+    threads = Thread.objects.filter(login=ri.id)
+
+
     for post in posts:
         thread = Thread.objects.get(thread=post.thread)
         activity.append({"date": post.date,
@@ -93,7 +97,7 @@ def user_page(request, user):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity,})
 
 
 def edit(request):
