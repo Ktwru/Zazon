@@ -3,6 +3,7 @@ from .models import *
 from django.http import *
 from .forms import RegStep1, RegStep2, NewThread, NewPost
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 
 
 def main_page(request):
@@ -13,7 +14,9 @@ def main_page(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
-    return render(request, "main_page.html", {"user_count": user_count, "post_count": post_count, "thread_count": thread_count, "num_visits": num_visits})
+    return render(request, "main_page.html",
+                  {"user_count": user_count, "post_count": post_count, "thread_count": thread_count,
+                   "num_visits": num_visits})
 
 
 def board(request, board):
@@ -56,9 +59,11 @@ def thread(request, board, thread_id):
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login)
             post = Post.objects.filter(thread_id=thread_id)
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
+            return render(request, "thread.html",
+                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
         else:
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
+            return render(request, "thread.html",
+                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
@@ -110,11 +115,11 @@ def register(request):
             status1 = request.POST.get("status")
             new_user_det = User_det(username=new_user, name=name1, info=info1, status=status1)
             new_user_det.save()
+            user = authenticate(username=username1, password=password1)
+            login(request, user)
             return render(request, "registration/registration_complete.html")
         else:
-            return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2, "error": "Passwords do not match!"})
+            return render(request, "registration/registration.html",
+                          {"step1": RegStep1, "step2": RegStep2, "error": "Passwords do not match!"})
     else:
         return render(request, "registration/registration.html", {"step1": RegStep1, "step2": RegStep2})
-
-
-
