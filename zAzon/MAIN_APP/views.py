@@ -42,17 +42,23 @@ def board(request, board):
 
 def thread(request, board, thread_id):
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
-        post = Post.objects.filter(thread_id=thread_id)
+        posts = Post.objects.filter(thread_id=thread_id)
         thread = Thread.objects.get(id=thread_id)
-        status = {login.login: User_det.objects.get(username=User.objects.get(username=login.login)).status for login in post}
+        post_list = []
+        for post in posts:
+            post_list.append({"date": post.date,
+                              "post": post.post,
+                              "login": post.login,
+                              "status": User_det.objects.get(username=User.objects.get(username=post.login)).status})
+
         if request.method == 'POST':
             post = request.POST.get('post')
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login)
             post = Post.objects.filter(thread_id=thread_id)
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost, "status": status})
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
         else:
-            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post, "NewPost": NewPost, "status": status})
+            return render(request, "thread.html", {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 

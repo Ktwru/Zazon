@@ -17,20 +17,17 @@
 
 {% endblock header %}
 {% block content %}
+
 <div>{{thread.thread_date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
 <div>{{thread.op_post}}</div>
+
 <div>
     {% for post in posts %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
-
-    {% for usr,stat in status.items %}
-    {% if usr == post.login and stat != ''%}
-    [{{stat}}]
-    {% endif %}
-    {% endfor %}
-
+    {{post.status}}
     {% endfor %}
 </div>
+
 {% if user.is_authenticated %}
 <div>
     Post:
@@ -43,4 +40,5 @@
     </form>
 </div>
 {% endif %}
+
 {% endblock content %}
