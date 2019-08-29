@@ -20,6 +20,11 @@ def main_page(request):
 
 
 def board(request, board):
+    if board == 'Magic': desc = 'Board about magic!'
+    if board == 'TVs': desc = 'Board about TVs.'
+    if board == 'Raccoons': desc = 'Board about raccoons!'
+    if board == 'Chill': desc = 'Board for chill...'
+
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
         threads = Thread.objects.filter(board=board)
         thread_list = []
@@ -38,15 +43,21 @@ def board(request, board):
             red = str(board) + '/Thread=' + str(new_thread.id)
             return HttpResponsePermanentRedirect(red)
         else:
-            return render(request, "board.html", {"threads": thread_list, "board": board, "NewThread": NewThread})
+            return render(request, "board.html",
+                          {"threads": thread_list, "board": board, "NewThread": NewThread, "desc": desc})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
 
 def thread(request, board, thread_id):
-    if board in ('Magic', 'TVs', 'Raccoons', 'Chill'):
-        posts = Post.objects.filter(thread_id=thread_id)
+    if board == 'Magic': desc = 'Board about magic!'
+    if board == 'TVs': desc = 'Board about TVs.'
+    if board == 'Raccoons': desc = 'Board about raccoons!'
+    if board == 'Chill': desc = 'Board for chill...'
+
+    if board in ('Magic', 'TVs', 'Raccoons', 'Chill') and Thread.objects.filter(id=thread_id).exists():
         thread = Thread.objects.get(id=thread_id)
+        posts = Post.objects.filter(thread_id=thread_id)
         post_list = []
         for post in posts:
             post_list.append({"date": post.date,
@@ -58,12 +69,11 @@ def thread(request, board, thread_id):
             post = request.POST.get('post')
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login)
-            post = Post.objects.filter(thread_id=thread_id)
-            return render(request, "thread.html",
-                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
+
+            return HttpResponsePermanentRedirect(request.path)
         else:
             return render(request, "thread.html",
-                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost})
+                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost, "desc": desc})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 

@@ -2,17 +2,7 @@
 {% block title %}{{board}}{% endblock title %}
 {% block header %}{{board}}
 <div>
-    {% if board == "Magic" %}
-        Board about magic!
-    {% elif board == "TVs" %}
-        Board about TVs!
-    {% elif board == "Raccoons" %}
-        Board about raccoons!
-    {% elif board == "Chill" %}
-        Board for chill!
-    {% else %}
-        error: invalid URL-address
-    {% endif %}
+        {{desc}}
 </div>
 
 
