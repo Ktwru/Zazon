@@ -17,6 +17,7 @@ class RegStep2(forms.Form):
 class NewThread(forms.Form):
     thread = forms.CharField(label="Thread name:", max_length=100, min_length=1)
     op_post = forms.CharField(label="Op-post:", min_length=1, widget=forms.Textarea)
+    pic = forms.ImageField(label="Image:")
 
 
 class NewPost(forms.Form):

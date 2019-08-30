@@ -8,7 +8,7 @@
 {% endblock header %}
 {% block content %}
 
-<div>{{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
+<div><img src="{{ thread.pic.url }}" height="100"/> - {{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
 <div>{{thread.op_post}}</div>
 
 <div>

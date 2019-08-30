@@ -12,7 +12,7 @@
 <div>
     Threads:
     {%for thread in threads%}
-    <img src="{{ thread.pic.url }}" height="150"/>
+    <img src="{{ thread.pic.url }}" height="100"/>
     <li>{{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></li>
 
     <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
@@ -24,7 +24,7 @@
 {% if user.is_authenticated %}
 <div>
     New Thread:
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{NewThread}}

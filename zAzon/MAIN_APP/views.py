@@ -37,15 +37,21 @@ def board(request, board):
                                 "pic": thread.pic})
 
         if request.method == 'POST':
+            form = NewThread(request.POST, request.FILES)
+            file = request.FILES['pic']
+
+
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
+            pic = request.POST.get('pic')
             login = User.objects.get(username=request.user.username)
-            new_thread = Thread.objects.create(thread=thread, board=board, login=login, op_post=op_post)
+            new_thread = Thread.objects.create(thread=thread, board=board, login=login, op_post=op_post, pic=file)
             red = str(board) + '/Thread=' + str(new_thread.id)
             return HttpResponsePermanentRedirect(red)
         else:
+            form = NewThread()
             return render(request, "board.html",
-                          {"threads": thread_list, "board": board, "NewThread": NewThread, "desc": desc})
+                          {"threads": thread_list, "board": board, "NewThread": form, "desc": desc})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
