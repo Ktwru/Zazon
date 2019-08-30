@@ -33,8 +33,7 @@ def board(request, board):
                                 "thread": thread.thread,
                                 "login": thread.login,
                                 "count": Post.objects.filter(thread=thread).count(),
-                                "id": thread.id,
-                                "pic": thread.pic})
+                                "id": thread.id})
 
         if request.method == 'POST':
             thread = request.POST.get('thread')
