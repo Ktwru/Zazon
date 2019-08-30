@@ -18,6 +18,7 @@ from django.urls import path
 from MAIN_APP import views
 from django.urls import re_path
 from django.urls import include
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('registration', views.register),
@@ -29,4 +30,4 @@ urlpatterns = [
     re_path(r'(?P<board>\w+)/Thread=(?P<thread_id>.+)', views.thread),
     re_path(r'(?P<board>\w+)', views.board),
     re_path('', views.main_page),
-]
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

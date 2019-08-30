@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
+from imagekit.models.fields import ImageSpecField
+from imagekit.processors import ResizeToFit, Adjust, ResizeToFill
 
 
 class Thread(models.Model):
@@ -8,7 +11,7 @@ class Thread(models.Model):
     login = models.ForeignKey(User, on_delete=models.PROTECT)
     op_post = models.TextField()
     date = models.DateTimeField(auto_now=True)
-    pic = models.ImageField(null=True, blank=True)
+    pic = models.ImageField(null=True, blank=True, upload_to='images/forthreads')
 
     def __str__(self):
         return self.thread
