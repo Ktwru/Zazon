@@ -34,7 +34,8 @@ def board(request, board):
                                 "login": thread.login,
                                 "count": Post.objects.filter(thread=thread).count(),
                                 "id": thread.id,
-                                "pic": thread.pic})
+                                "pic": thread.pic,
+                                "op_post": thread.op_post})
 
         if request.method == 'POST':
             form = NewThread(request.POST, request.FILES)

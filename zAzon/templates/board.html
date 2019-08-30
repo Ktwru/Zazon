@@ -12,12 +12,14 @@
 <div>
     Threads:
     {%for thread in threads%}
-    <img src="{{ thread.pic.url }}" height="100"/>
-    <li>{{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></li>
-
-    <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
-        {{thread.count}} posts
-
+    <p>
+    <table>
+    <tr align="left"><th>{{thread.date}}</th><th> {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></th></tr>
+    <tr><th><img src="{{ thread.pic.url }}" height="100"/></th><th align="left">{{thread.op_post}}</th>
+        <th align="left">{{thread.count}}{% if thread.count == 1 %} post{% else %} posts {% endif %}</th></tr>
+    <tr><th><input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" /></th></tr>
+    </table>
+    </p>
     {% endfor %}
     </div>
 
