@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{user}}{% endblock title %}
+{% block header %}
+
+{{user}} activity:
+
+{% endblock header %}
+{% block content %}
+
+
+<div>
+    <a href="/users/{{user}}">{{user}}</a> activity:
+    <table>
+    {% for act in activity %}
+
+        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}</th><th><a href="{{act.ref}}">{{act.thread}}</a></th></tr>
+
+    {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock content %}

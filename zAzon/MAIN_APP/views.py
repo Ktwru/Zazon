@@ -101,7 +101,7 @@ def user_page(request, user):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "activity": act})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "activity": act[:5]})
 
 
 def edit(request):
@@ -118,6 +118,24 @@ def edit(request):
         form = RegStep2(initial={'info': initial.info, 'status': initial.status, 'name': initial.name})
     return render(request, "registration/edit.html", {"form": form, "username": username})
 
+
+def user_activity(request, user):
+    ri = User.objects.get(username=user)
+    posts = Post.objects.filter(login=user).reverse()
+    threads = Thread.objects.filter(login=ri.id)
+    activity = []
+    for j in posts:
+        in_thread = Thread.objects.get(id=j.thread_id)
+        activity.append({"date": j.date,
+                         "content": user + ':' + j.post,
+                         "thread": 'in ' + str(j.thread),
+                         "ref": '/' + str(in_thread.board) + '/Thread=' + str(in_thread.id)})
+    for j in threads: activity.append({"date": j.date,
+                                       "content": user + " created a thread:",
+                                       "thread": str(j.thread),
+                                       "ref": '/' + str(j.board) + '/Thread=' + str(j.id)})
+    act = sorted(activity, key=lambda k: k['date'], reverse=True)
+    return render(request, 'user_activity.html', {'activity': act, 'user': user})
 
 def register(request):
     if request.method == 'POST':

@@ -30,8 +30,9 @@
 
     {% endfor %}
     </table>
+    <a href="{{request.path}}/activity">All activity<a>
 </div>
 
-{%for j in i%}<li>{{j.date}}---{{j.content}}---{{j.thread}}</li>{%endfor%}
+
 
 {% endblock content %}
