@@ -24,9 +24,9 @@
 <div>
     Latest post activity:
     <table>
-    {% for post in posts %}
+    {% for act in activity %}
 
-        <tr align="left"><th>{{post.date}}</th><th> - {{post.post}}</th><th>in <a href="{{post.ref}}">{{post.thread}}</a></th></tr>
+        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}</th><th><a href="{{act.ref}}">{{act.thread}}</a></th></tr>
 
     {% endfor %}
     </table>

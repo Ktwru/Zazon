@@ -81,32 +81,27 @@ def thread(request, board, thread_id):
 def user_page(request, user):
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
+
     posts = Post.objects.filter(login=user).reverse()
-    activity = []
-
     threads = Thread.objects.filter(login=ri.id)
-    u = []
-    for j in posts: u.append({"date": j.date,
-                              "content": user + ':' + j.post,
-                              "thread": 'in ' + str(j.thread),
-                              })
-    for j in threads: u. append({"date": j.date,
-                                 "content": user + " created a thread:",
-                                 "thread": str(j.thread),
-                                 })
-    i = sorted(u, key=lambda k: k['date'], reverse=True)
+    activity = []
+    for j in posts:
+        in_thread = Thread.objects.get(id=j.thread_id)
+        activity.append({"date": j.date,
+                         "content": user + ':' + j.post,
+                         "thread": 'in ' + str(j.thread),
+                         "ref": '/' + str(in_thread.board) + '/Thread=' + str(in_thread.id)})
+    for j in threads: activity.append({"date": j.date,
+                                       "content": user + " created a thread:",
+                                       "thread": str(j.thread),
+                                       "ref": '/' + str(j.board) + '/Thread=' + str(j.id)})
+    act = sorted(activity, key=lambda k: k['date'], reverse=True)
 
-    for post in posts:
-        thread = Thread.objects.get(thread=post.thread)
-        activity.append({"date": post.date,
-                         "post": post.post,
-                         "ref": '/' + str(thread.board) + '/Thread=' + str(thread.id),
-                         "thread": thread.thread})
     if request.user.is_authenticated and str(request.user.username) == str(details.username):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "posts": activity, "i": i})
+    return render(request, "user_page.html", {"details": details, "user_check": user_check, "activity": act})
 
 
 def edit(request):
