@@ -12,8 +12,9 @@
 <div>
     Threads:
     {%for thread in threads%}
-
+    <img src="{{ thread.pic.url }}" height="150"/>
     <li>{{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></li>
+
     <input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" />
         {{thread.count}} posts
 

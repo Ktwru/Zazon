@@ -8,7 +8,7 @@ class Thread(models.Model):
     login = models.ForeignKey(User, on_delete=models.PROTECT)
     op_post = models.TextField()
     date = models.DateTimeField(auto_now=True)
-    pic = models.ImageField(null=True, blank=True)
+    pic = models.ImageField(null=True, blank=True, upload_to='threads')
 
     def __str__(self):
         return self.thread

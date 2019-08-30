@@ -18,8 +18,10 @@ from django.urls import path
 from MAIN_APP import views
 from django.urls import re_path
 from django.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 
-urlpatterns = [
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('registration', views.register),
     re_path(r'users/.+/edit', views.edit),
     re_path(r'users/(?P<user>.+)/activity', views.user_activity),
