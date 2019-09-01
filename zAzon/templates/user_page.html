@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}{{details.username}}{% endblock title %}
 {% block header %}
 
@@ -6,6 +7,11 @@
 
 {% endblock header %}
 {% block content %}
+    {% if details.pic %}
+    <img height="200" width="200" src="{{details.pic.url}}">
+    {% else %}
+    <img src="{% static "images/default.jpg" %}">
+    {% endif %}
 
     <table>
         <tr align="left"><th>Login:</th><th>{{details.username}}</th></tr>
@@ -30,7 +36,7 @@
 
     {% endfor %}
     </table>
-    <a href="{{request.path}}/activity">All activity<a>
+    <a href="{{request.path}}/activity">All activity</a>
 </div>
 
 

@@ -30,7 +30,7 @@ class User_det(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True, default='')
     info = models.TextField(null=True, blank=True)
     status = models.TextField(max_length=250, null=True, blank=True)
-    pic = models.ImageField(null=True, blank=True)
+    pic = models.ImageField(upload_to='users', default=None)
 
     def __str__(self):
-        return self.username
+        return str(self.username)
