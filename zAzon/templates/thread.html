@@ -24,6 +24,7 @@
     {% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
     {{post.status}}
+
     {% endfor %}
 </div>
 

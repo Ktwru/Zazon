@@ -23,4 +23,4 @@ class NewThread(forms.Form):
 
 class NewPost(forms.Form):
     post = forms.CharField(min_length=1, widget=forms.Textarea)
-    pic = forms.ImageField(label="Image:")
+    pic = forms.ImageField(label="Image:", required=False)

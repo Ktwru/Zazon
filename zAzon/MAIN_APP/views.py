@@ -76,7 +76,8 @@ def thread(request, board, thread_id):
 
         if request.method == 'POST':
             post = request.POST.get('post')
-            file = request.FILES['pic']
+            if 'pic' in request.FILES: file = request.FILES['pic', False]
+            else: file = None
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login, pic=file)
 
