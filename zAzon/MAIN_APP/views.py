@@ -121,11 +121,15 @@ def edit(request):
         name1 = request.POST.get("name")
         info1 = request.POST.get("info")
         status1 = request.POST.get("status")
-        User_det.objects.filter(username=ri).update(name=name1, info=info1, status=status1)
-        return user_page(request, username)
+        user_det = User_det.objects.filter(username=ri)
+        user_det.update(name=name1, info=info1, status=status1)
+        if 'pic' in request.FILES:
+            file = request.FILES['pic']
+            user_det.update_or_create(defaults={"pic": file})
+        return HttpResponsePermanentRedirect('/users/' + str(username))
     else:
         initial = User_det.objects.get(username_id=ri.id)
-        form = RegStep2(initial={'info': initial.info, 'status': initial.status, 'name': initial.name})
+        form = RegStep2(initial={'info': initial.info, 'status': initial.status, 'name': initial.name, 'pic': initial.pic})
     return render(request, "registration/edit.html", {"form": form, "username": username})
 
 

@@ -12,6 +12,7 @@ class RegStep2(forms.Form):
     name = forms.CharField(label="Name", required=False, max_length=100)
     info = forms.CharField(label="Other info", widget=forms.Textarea, required=False)
     status = forms.CharField(label="Status", widget=forms.Textarea, required=False, max_length=250)
+    pic = forms.ImageField(label="Profile picture:")
 
 
 class NewThread(forms.Form):

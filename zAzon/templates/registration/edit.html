@@ -3,7 +3,7 @@
 {% block header %}Edit:{% endblock header %}
 {% block content %}
 <p>{{username}}:</p>
-<form method = "POST">
+<form method = "POST" enctype="multipart/form-data">
     {% csrf_token %}
 <table>
     {{form}}
