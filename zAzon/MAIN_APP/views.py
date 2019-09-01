@@ -41,7 +41,6 @@ def board(request, board):
             form = NewThread(request.POST, request.FILES)
             file = request.FILES['pic']
 
-
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
             login = User.objects.get(username=request.user.username)
@@ -67,11 +66,13 @@ def thread(request, board, thread_id):
         posts = Post.objects.filter(thread_id=thread_id)
         post_list = []
         for post in posts:
+            details = User_det.objects.get(username=User.objects.get(username=post.login))
             post_list.append({"date": post.date,
                               "post": post.post,
                               "login": post.login,
                               "pic": post.pic,
-                              "status": User_det.objects.get(username=User.objects.get(username=post.login)).status},)
+                              "status": details.status,
+                              "user_pic": details.pic})
 
         if request.method == 'POST':
             post = request.POST.get('post')
@@ -145,6 +146,7 @@ def user_activity(request, user):
                                        "ref": '/' + str(j.board) + '/Thread=' + str(j.id)})
     act = sorted(activity, key=lambda k: k['date'], reverse=True)
     return render(request, 'user_activity.html', {'activity': act, 'user': user})
+
 
 def register(request):
     if request.method == 'POST':

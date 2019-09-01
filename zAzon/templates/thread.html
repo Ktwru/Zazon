@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}{{thread.thread}}{% endblock title %}
 {% block header %}{{board}},{{thread}}
 <div>
@@ -12,7 +13,15 @@
 <div>{{thread.op_post}}</div>
 
 <div>
-    {% for post in posts %}{% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
+    {% for post in posts %}
+
+    {% if post.user_pic %}
+    <img height="50" width="50" src="{{post.user_pic.url}}">
+    {% else %}
+    <img height="50" src="{% static "images/default.jpg" %}">
+    {% endif %}
+
+    {% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
     {{post.status}}
     {% endfor %}
