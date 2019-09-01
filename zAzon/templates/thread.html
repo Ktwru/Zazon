@@ -12,7 +12,7 @@
 <div>{{thread.op_post}}</div>
 
 <div>
-    {% for post in posts %}
+    {% for post in posts %}{% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
     {{post.status}}
     {% endfor %}

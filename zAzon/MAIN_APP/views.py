@@ -71,7 +71,8 @@ def thread(request, board, thread_id):
             post_list.append({"date": post.date,
                               "post": post.post,
                               "login": post.login,
-                              "status": User_det.objects.get(username=User.objects.get(username=post.login)).status})
+                              "pic": post.pic,
+                              "status": User_det.objects.get(username=User.objects.get(username=post.login)).status},)
 
         if request.method == 'POST':
             post = request.POST.get('post')

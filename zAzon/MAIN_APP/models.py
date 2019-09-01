@@ -19,7 +19,7 @@ class Post(models.Model):
     post = models.TextField()
     login = models.CharField(max_length=30)
     date = models.DateTimeField(auto_now=True)
-    pic = models.ImageField(null=True, blank=True)
+    pic = models.ImageField(null=True, blank=True, upload_to='posts', default=None)
 
     def __str__(self):
         return self.post
