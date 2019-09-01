@@ -44,7 +44,6 @@ def board(request, board):
 
             thread = request.POST.get('thread')
             op_post = request.POST.get('op_post')
-            pic = request.POST.get('pic')
             login = User.objects.get(username=request.user.username)
             new_thread = Thread.objects.create(thread=thread, board=board, login=login, op_post=op_post, pic=file)
             red = str(board) + '/Thread=' + str(new_thread.id)
@@ -76,8 +75,9 @@ def thread(request, board, thread_id):
 
         if request.method == 'POST':
             post = request.POST.get('post')
+            file = request.FILES['pic']
             login = User.objects.get(username=request.user.username)
-            new_post = Post.objects.create(thread=thread, post=post, login=login)
+            new_post = Post.objects.create(thread=thread, post=post, login=login, pic=file)
 
             return HttpResponsePermanentRedirect(request.path)
         else:

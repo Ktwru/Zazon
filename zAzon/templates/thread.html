@@ -23,7 +23,7 @@
 {% if user.is_authenticated %}
 <div>
     Post:
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{NewPost}}
