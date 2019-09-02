@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}{{board}}{% endblock title %}
 {% block header %}{{board}}
 <div>
@@ -14,7 +15,13 @@
     {%for thread in threads%}
     <p>
     <table>
-    <tr align="left"><th>{{thread.date}}</th><th> {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}<img src="{{ thread.op_pic.url }}" height="50"/></a></th></tr>
+    <tr align="left"><th>{{thread.date}}</th><th> {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}
+        {% if thread.op_pic %}
+        <img src="{{ thread.op_pic.url }}" height="50" width="50"/>
+        {% else %}
+        <img height="50" src="{% static "images/default.jpg" %}"/>
+        {% endif %}
+    </a></th></tr>
     <tr><th><img src="{{ thread.pic.url }}" height="100"/></th><th align="left">{{thread.op_post}}</th>
         <th align="left">{{thread.count}}{% if thread.count == 1 %} post{% else %} posts {% endif %}</th></tr>
     <tr><th><input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" /></th></tr>

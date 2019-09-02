@@ -8,16 +8,18 @@
 
 {% endblock header %}
 {% block content %}
-<img src="{{thread.op_pic.url}}" height="50" width="50"/>
+{% if thread.op_pic %}<img src="{{thread.op_pic.url}}" height="50" width="50"/>{% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}
 <div><img src="{{ thread.pic.url }}" height="100"/> - {{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
 <div>{{thread.op_post}}</div>
 
 <div>
     {% for post in posts %}
 
-    
+    {% if post.user_pic %}
     <img height="50" width="50" src="{{post.user_pic.url}}">
-
+    {% else %}
+    <img height="50" src="{% static "images/default.jpg" %}">
+    {% endif %}
 
     {% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
     <li>{{post.date}} - {{post.post}} - <a href="users/{{post.login}}">{{post.login}}</a></li>
