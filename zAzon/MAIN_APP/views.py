@@ -63,10 +63,8 @@ def thread(request, board, thread_id):
     if board == 'Chill': desc = 'Board for chill...'
 
     if board in ('Magic', 'TVs', 'Raccoons', 'Chill') and Thread.objects.filter(id=thread_id).exists():
-        thread = Thread.objects.get(id=thread_id)
         posts = Post.objects.filter(thread_id=thread_id)
         post_list = []
-
         for post in posts:
             details = User_det.objects.get(username=User.objects.get(username=post.login))
             post_list.append({"date": post.date,
@@ -75,8 +73,9 @@ def thread(request, board, thread_id):
                               "pic": post.pic,
                               "status": details.status,
                               "user_pic": details.pic})
-        #threadone = {"date": thread.date, "pic": thread.pic, "thread": thread.thread,
-         #            "login": thread.login, "op_post": thread.op_post, "user_pic": User_det.objects.get(username=thread.login).pic}
+        thread = Thread.objects.get(id=thread_id)
+        threadone = {"date": thread.date, "pic": thread.pic, "thread": thread.thread,
+                    "login": thread.login, "op_post": thread.op_post, "op_pic": User_det.objects.get(username=thread.login).pic}
         if request.method == 'POST':
             post = request.POST.get('post')
             if 'pic' in request.FILES: file = request.FILES['pic', False]
@@ -87,7 +86,7 @@ def thread(request, board, thread_id):
             return HttpResponsePermanentRedirect(request.path)
         else:
             return render(request, "thread.html",
-                          {"board": board, "thread": thread, "posts": post_list, "NewPost": NewPost, "desc": desc})
+                          {"board": board, "thread": threadone, "posts": post_list, "NewPost": NewPost, "desc": desc})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 

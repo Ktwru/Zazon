@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{{thread.thread}}{% endblock title %}
-{% block header %}{{board}},{{thread}}
+{% block header %}{{board}},{{thread.thread}}
 <div>
         {{desc}}
 </div>
 
 {% endblock header %}
 {% block content %}
-
+<img src="{{thread.op_pic.url}}" height="50" width="50"/>
 <div><img src="{{ thread.pic.url }}" height="100"/> - {{thread.date}} - {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}</a></div>
 <div>{{thread.op_post}}</div>
 
