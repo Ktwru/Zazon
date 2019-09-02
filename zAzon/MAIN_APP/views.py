@@ -168,8 +168,9 @@ def register(request):
             name1 = request.POST.get("name")
             info1 = request.POST.get("info")
             status1 = request.POST.get("status")
-            new_user_det = User_det(username=new_user, name=name1, info=info1, status=status1)
-            new_user_det.save()
+            if 'pic' in request.FILES: file = request.FILES['pic']
+            else: file = None
+            new_user_det = User_det.objects.create(username=new_user, name=name1, info=info1, status=status1, pic=file)
             user = authenticate(username=username1, password=password1)
             login(request, user)
             return render(request, "registration/registration_complete.html")

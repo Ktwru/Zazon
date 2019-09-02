@@ -3,7 +3,7 @@
 {% block header %}Registration{% endblock header %}
 {% block content %}
 {{error}}
-<form method = "POST">
+<form method = "POST" enctype="multipart/form-data">
     {% csrf_token %}
 <table>
     {{step1}}
