@@ -11,12 +11,26 @@ def main_page(request):
     post_count = Post.objects.count()
     thread_count = Thread.objects.count()
 
+    users = User.objects.all()
+    active = []
+    threads = Thread.objects.all()
+    posts = Post.objects.all()
+    for user in users:
+        tr = threads.filter(login=user).count()
+        ps = posts.filter(login=user.username).count()
+        active.append({"login": user.username,
+                        "count": tr + ps,
+                        "desc": str(tr)+" threads, "+str(ps)+' posts',
+                        "pic": User_det.objects.get(username=user).pic})
+    active = sorted(active, key=lambda k: k['count'], reverse=True)
+
+
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
     return render(request, "main_page.html",
                   {"user_count": user_count, "post_count": post_count, "thread_count": thread_count,
-                   "num_visits": num_visits})
+                   "num_visits": num_visits, "active": active[:5]})
 
 
 def board(request, board):
