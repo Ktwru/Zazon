@@ -72,10 +72,12 @@ def thread(request, board, thread_id):
                               "login": post.login,
                               "pic": post.pic,
                               "status": details.status,
-                              "user_pic": details.pic})
+                              "user_pic": details.pic if details.pic != None else 'images/default.jpg'})
         thread = Thread.objects.get(id=thread_id)
+        op_pic = User_det.objects.get(username=thread.login).pic
+        if op_pic == None: op_pic = 'images/default.jpg'
         threadone = {"date": thread.date, "pic": thread.pic, "thread": thread.thread,
-                    "login": thread.login, "op_post": thread.op_post, "op_pic": User_det.objects.get(username=thread.login).pic}
+                    "login": thread.login, "op_post": thread.op_post, "op_pic": op_pic}
         if request.method == 'POST':
             post = request.POST.get('post')
             if 'pic' in request.FILES: file = request.FILES['pic', False]
