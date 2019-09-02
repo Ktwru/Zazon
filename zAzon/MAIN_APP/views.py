@@ -35,7 +35,8 @@ def board(request, board):
                                 "count": Post.objects.filter(thread=thread).count(),
                                 "id": thread.id,
                                 "pic": thread.pic,
-                                "op_post": thread.op_post})
+                                "op_post": thread.op_post,
+                                "op_pic": User_det.objects.get(username=User.objects.get(username=thread.login)).pic})
 
         if request.method == 'POST':
             form = NewThread(request.POST, request.FILES)
@@ -65,6 +66,7 @@ def thread(request, board, thread_id):
         thread = Thread.objects.get(id=thread_id)
         posts = Post.objects.filter(thread_id=thread_id)
         post_list = []
+
         for post in posts:
             details = User_det.objects.get(username=User.objects.get(username=post.login))
             post_list.append({"date": post.date,
@@ -73,7 +75,8 @@ def thread(request, board, thread_id):
                               "pic": post.pic,
                               "status": details.status,
                               "user_pic": details.pic})
-
+        #threadone = {"date": thread.date, "pic": thread.pic, "thread": thread.thread,
+         #            "login": thread.login, "op_post": thread.op_post, "user_pic": User_det.objects.get(username=thread.login).pic}
         if request.method == 'POST':
             post = request.POST.get('post')
             if 'pic' in request.FILES: file = request.FILES['pic', False]
