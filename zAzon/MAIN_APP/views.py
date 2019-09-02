@@ -162,14 +162,17 @@ def register(request):
             username1 = request.POST.get("username")
             password1 = request.POST.get("password1")
             email1 = request.POST.get("email")
-            new_user = User(username=username1, email=email1)
-            new_user.set_password(password1)
-            new_user.save()
             name1 = request.POST.get("name")
             info1 = request.POST.get("info")
             status1 = request.POST.get("status")
+            if User.objects.filter(username=username1).exists():
+                return render(request, "registration/registration.html",
+                              {"step1": RegStep1, "step2": RegStep2, "error": "User " + username1 + ' already exists!'})
             if 'pic' in request.FILES: file = request.FILES['pic']
             else: file = None
+            new_user = User(username=username1, email=email1)
+            new_user.set_password(password1)
+            new_user.save()
             new_user_det = User_det.objects.create(username=new_user, name=name1, info=info1, status=status1, pic=file)
             user = authenticate(username=username1, password=password1)
             login(request, user)
