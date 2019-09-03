@@ -17,7 +17,7 @@
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
-    <div>[{{userpic}}]
+    <div>
         {% if user.is_authenticated %}
             <li>User: <a href="/users/{{user.get_username}}">{{ user.get_username }}
             {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>

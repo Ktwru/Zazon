@@ -19,23 +19,30 @@ def main_page(request):
         tr = threads.filter(login=user).count()
         ps = posts.filter(login=user.username).count()
         active.append({"login": user.username,
-                        "count": tr + ps,
-                        "desc": str(tr)+" threads, "+str(ps)+' posts',
-                        "pic": User_det.objects.get(username=user).pic})
+                       "count": tr + ps,
+                       "desc": str(tr) + " threads, " + str(ps) + ' posts',
+                       "pic": User_det.objects.get(username=user).pic})
     active = sorted(active, key=lambda k: k['count'], reverse=True)
-
-    if request.user.is_authenticated: userpic = User_det.objects.get(username=request.user.id).pic
-    else: userpic = None
 
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     return render(request, "main_page.html",
                   {"user_count": user_count, "post_count": post_count, "thread_count": thread_count,
-                   "num_visits": num_visits, "active": active[:5], " userpic": userpic})
+                   "num_visits": num_visits, "active": active[:5], "userpic": userpic})
 
 
 def board(request, board):
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     if board == 'Magic': desc = 'Board about magic!'
     if board == 'TVs': desc = 'Board about TVs.'
     if board == 'Raccoons': desc = 'Board about raccoons!'
@@ -67,12 +74,17 @@ def board(request, board):
         else:
             form = NewThread()
             return render(request, "board.html",
-                          {"threads": thread_list, "board": board, "NewThread": form, "desc": desc})
+                          {"threads": thread_list, "board": board, "NewThread": form, "desc": desc, 'userpic': userpic})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
 
 def thread(request, board, thread_id):
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     if board == 'Magic': desc = 'Board about magic!'
     if board == 'TVs': desc = 'Board about TVs.'
     if board == 'Raccoons': desc = 'Board about raccoons!'
@@ -91,23 +103,32 @@ def thread(request, board, thread_id):
                               "user_pic": details.pic})
         thread = Thread.objects.get(id=thread_id)
         threadone = {"date": thread.date, "pic": thread.pic, "thread": thread.thread,
-                    "login": thread.login, "op_post": thread.op_post, "op_pic": User_det.objects.get(username=thread.login).pic}
+                     "login": thread.login, "op_post": thread.op_post,
+                     "op_pic": User_det.objects.get(username=thread.login).pic}
         if request.method == 'POST':
             post = request.POST.get('post')
-            if 'pic' in request.FILES: file = request.FILES['pic', False]
-            else: file = None
+            if 'pic' in request.FILES:
+                file = request.FILES['pic', False]
+            else:
+                file = None
             login = User.objects.get(username=request.user.username)
             new_post = Post.objects.create(thread=thread, post=post, login=login, pic=file)
 
             return HttpResponsePermanentRedirect(request.path)
         else:
             return render(request, "thread.html",
-                          {"board": board, "thread": threadone, "posts": post_list, "NewPost": NewPost, "desc": desc})
+                          {"board": board, "thread": threadone, "posts": post_list, "NewPost": NewPost, "desc": desc,
+                           'userpic': userpic})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
 
 def user_page(request, user):
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     ri = User.objects.get(username=user)
     details = User_det.objects.get(username_id=ri.id)
 
@@ -130,10 +151,16 @@ def user_page(request, user):
         user_check = True
     else:
         user_check = False
-    return render(request, "user_page.html", {"details": details, "user_check": user_check, "activity": act[:5]})
+    return render(request, "user_page.html",
+                  {"details": details, "user_check": user_check, "activity": act[:5], 'userpic': userpic})
 
 
 def edit(request):
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     username = request.user.username
     ri = User.objects.get(username=username)
     if request.method == 'POST':
@@ -148,11 +175,17 @@ def edit(request):
         return HttpResponsePermanentRedirect('/users/' + str(username))
     else:
         initial = User_det.objects.get(username_id=ri.id)
-        form = RegStep2(initial={'info': initial.info, 'status': initial.status, 'name': initial.name, 'pic': initial.pic})
-    return render(request, "registration/edit.html", {"form": form, "username": username})
+        form = RegStep2(
+            initial={'info': initial.info, 'status': initial.status, 'name': initial.name, 'pic': initial.pic})
+    return render(request, "registration/edit.html", {"form": form, "username": username, 'userpic': userpic})
 
 
 def user_activity(request, user):
+    if request.user.is_authenticated:
+        userpic = User_det.objects.get(username_id=request.user.id).pic
+    else:
+        userpic = None
+
     ri = User.objects.get(username=user)
     posts = Post.objects.filter(login=user).reverse()
     threads = Thread.objects.filter(login=ri.id)
@@ -168,7 +201,7 @@ def user_activity(request, user):
                                        "thread": str(j.thread),
                                        "ref": '/' + str(j.board) + '/Thread=' + str(j.id)})
     act = sorted(activity, key=lambda k: k['date'], reverse=True)
-    return render(request, 'user_activity.html', {'activity': act, 'user': user})
+    return render(request, 'user_activity.html', {'activity': act, 'user': user, 'userpic': userpic})
 
 
 def register(request):
@@ -183,8 +216,10 @@ def register(request):
             if User.objects.filter(username=username1).exists():
                 return render(request, "registration/registration.html",
                               {"step1": RegStep1, "step2": RegStep2, "error": "User " + username1 + ' already exists!'})
-            if 'pic' in request.FILES: file = request.FILES['pic']
-            else: file = None
+            if 'pic' in request.FILES:
+                file = request.FILES['pic']
+            else:
+                file = None
             new_user = User(username=username1, email=email1)
             new_user.set_password(password1)
             new_user.save()
