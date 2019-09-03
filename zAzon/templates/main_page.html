@@ -9,12 +9,12 @@
 <div>Most active users:
 <table>
     {% for user in active %}
-    <tr><th align="right">{{user.login}}
+    <tr><th align="right"><a href="/users/{{user.login}}">{{user.login}}
     {% if user.pic %}
     <img height="50" width="50" src="{{user.pic.url}}">
     {% else %}
     <img height="50" src="{% static "images/default.jpg" %}">
-    {% endif %}
+        {% endif %}</a>
     </th><th> - {{user.desc}}</th></tr>
     {% endfor %}
 </table></div>

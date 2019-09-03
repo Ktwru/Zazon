@@ -31,7 +31,7 @@
     <table>
     {% for act in activity %}
 
-        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}</th><th><a href="{{act.ref}}">{{act.thread}}</a></th></tr>
+        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}<a href="{{act.ref}}"> {{act.thread}}</a></th></tr>
 
     {% endfor %}
     </table>
