@@ -4,21 +4,25 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}zAzon{% endblock title %}</title>
+    <--link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body bgcolor="LightSlateGray">
-    <h1>{% block header %}{% endblock header %}</h1>
+    <h1>{% block header %}zAzon{% endblock header %}</h1>
     <div><a href="/">GoHome</a></div>
     <div>{% block content %}{% endblock content %}</div>
-    <div>
+    <div class="sidebar">
         <p>Boards:</p>
         <li><a href="/TVs">TVs</a></li>
         <li><a href="/Raccoons">Raccoons</a></li>
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
-    <div>
+    <div>[{{userpic}}]
         {% if user.is_authenticated %}
-            <li>User: <a href="/users/{{user.get_username}}">{{ user.get_username }}</a></li>
+            <li>User: <a href="/users/{{user.get_username}}">{{ user.get_username }}
+            {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
+            {% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}
+            </a></li>
             <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
         {% else %}
             <li><a href="{% url 'login'%}?next={{request.path}}">Login</a> or

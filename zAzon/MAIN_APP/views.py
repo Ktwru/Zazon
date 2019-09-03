@@ -24,13 +24,15 @@ def main_page(request):
                         "pic": User_det.objects.get(username=user).pic})
     active = sorted(active, key=lambda k: k['count'], reverse=True)
 
+    if request.user.is_authenticated: userpic = User_det.objects.get(username=request.user.id).pic
+    else: userpic = None
 
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
     return render(request, "main_page.html",
                   {"user_count": user_count, "post_count": post_count, "thread_count": thread_count,
-                   "num_visits": num_visits, "active": active[:5]})
+                   "num_visits": num_visits, "active": active[:5], " userpic": userpic})
 
 
 def board(request, board):

@@ -1,0 +1,9 @@
+div.sidebar {
+    color: navy;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    float: left
+}
