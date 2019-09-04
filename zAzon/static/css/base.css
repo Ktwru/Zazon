@@ -1,9 +1,72 @@
-div.sidebar {
-    color: navy;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-    float: left
+html{
+    background-color: #210c0c;
+    list-style-type: none;
+}
+
+a {
+    color: #8800ff;
+}
+
+a:hover {
+    color: #b3006e;
+}
+
+div {
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    text-shadow: -1px -1px -2px #ffe76b;
+    color: #b39b20;
+}
+
+.main {
+    color: #ffcc00;
+}
+
+.bar {
+    height: 100%;
+    background-color: #2e0000;
+    position:fixed;
+    top:0px;
+    left:0;
+    width:180px;
+    text-align:left;
+    padding-left:20px;
+    padding-top: 120px;
+}
+
+.header {
+    position:absolute;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
+    width:1200px;
+    height: 100px;
+    background-color: #3b1212;
+
+    padding-left: 150px;
+    margin: 0px;
+    text-align: left;
+    color: #ffcc00;
+    font-size: 20px;
+}
+
+.miniheader {
+    position:fixed;
+    z-index:2;
+    top: 0px;
+    left: 0px;
+    width:180px;
+    height: 120px;
+    background-color: #2e0000;
+    padding-left: 20px;
+    margin: 0px;
+    color: #ffcc00;
+}
+
+.content {
+    position:absolute;
+    top:100px;
+    left:200px;
+    padding-top: 20px;
+    padding-left: 20px;
 }

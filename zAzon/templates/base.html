@@ -4,22 +4,28 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}zAzon{% endblock title %}</title>
-    <--link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
-<body bgcolor="LightSlateGray">
-    <h1>{% block header %}zAzon{% endblock header %}</h1>
+<body>
+<div class="header">{% block header %}<h1>zAzon</h1>{% endblock header %}</div>
+
+<div class="miniheader"><h1>zAzon</h1>{{board}}</div>
+
+<div class="content">{% block content %}{% endblock content %}</div>
+
+<div class="bar">
     <div><a href="/">GoHome</a></div>
-    <div>{% block content %}{% endblock content %}</div>
-    <div class="sidebar">
+    <div class="main">
         <p>Boards:</p>
         <li><a href="/TVs">TVs</a></li>
         <li><a href="/Raccoons">Raccoons</a></li>
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
-    <div>
+    <div class="main">
         {% if user.is_authenticated %}
-            <li>User: <a href="/users/{{user.get_username}}">{{ user.get_username }}
+            <li><a href="/users/{{user.get_username}}">{{ user.get_username }}
             {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
             {% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}
             </a></li>
@@ -29,6 +35,7 @@
             <a href="/registration">Register</a></li>
         {% endif %}
     </div>
-    <div><img src="{% static "images/S1.png" %}" alt = "Test"></div>
+</div>
+
 </body>
 </html>
