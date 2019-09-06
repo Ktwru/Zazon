@@ -16,14 +16,13 @@
 
 <div class="bar">
     <div><a href="/">GoHome</a></div>
-    <div class="main">
-        <p>Boards:</p>
+    <div>
         <li><a href="/TVs">TVs</a></li>
         <li><a href="/Raccoons">Raccoons</a></li>
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
-    <div class="main">
+    <div>
         {% if user.is_authenticated %}
             <li><a href="/users/{{user.get_username}}">{{ user.get_username }}
             {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
