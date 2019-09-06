@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}zAzon{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
 <div class="header">{% block header %}<h1>zAzon</h1>{% endblock header %}</div>
@@ -22,7 +22,7 @@
         <li><a href="/Magic">Magic</a></li>
         <li><a href="/Chill">Chill</a></li>
     </div>
-    <div>
+    <div class="bar_user">
         {% if user.is_authenticated %}
             <li><a href="/users/{{user.get_username}}">{{ user.get_username }}
             {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
