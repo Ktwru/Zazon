@@ -52,8 +52,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'zAzon.urls'
 
-AUTH_USER_MODEL = 'core.MyUser'
-
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
 TEMPLATES = [

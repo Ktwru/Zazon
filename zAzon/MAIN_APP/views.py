@@ -7,6 +7,11 @@ from django.contrib.auth import login, authenticate
 
 
 def main_page(request):
+    user_count = User.objects.count()
+    post_count = Post.objects.count()
+    thread_count = Thread.objects.count()
+
+    users = User.objects.all()
     active = []
     threads = Thread.objects.all()
     posts = Post.objects.all()
@@ -21,12 +26,14 @@ def main_page(request):
 
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
+
     if request.user.is_authenticated:
         userpic = User_det.objects.get(username_id=request.user.id).pic
     else:
         userpic = None
+
     return render(request, "main_page.html",
-                  {"user_count": User.objects.count(), "post_count": post_count = Post.objects.count(), "thread_count": Thread.objects.count(),
+                  {"user_count": user_count, "post_count": post_count, "thread_count": thread_count,
                    "num_visits": num_visits, "active": active[:5], "userpic": userpic})
 
 
