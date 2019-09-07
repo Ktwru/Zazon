@@ -1,21 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 
 
+class Board(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class Thread(models.Model):
-    thread = models.CharField(max_length=100)
-    board = models.CharField(max_length=100)
-    login = models.ForeignKey(User, on_delete=models.PROTECT)
-    op_post = models.TextField()
+    name = models.CharField(max_length=100)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE)
+    description = models.TextField()
     date = models.DateTimeField(auto_now=True)
     pic = models.ImageField(null=True, blank=True, upload_to='threads')
 
     def __str__(self):
-        return self.thread
+        return self.name
 
 
 class Post(models.Model):
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, 'posts')
     post = models.TextField()
     login = models.CharField(max_length=30)
     date = models.DateTimeField(auto_now=True)
@@ -25,12 +29,12 @@ class Post(models.Model):
         return self.post
 
 
-class User_det(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
+class MyUser(AbstractUser):
     name = models.CharField(max_length=100, null=True, blank=True, default='')
     info = models.TextField(null=True, blank=True)
     status = models.TextField(max_length=250, null=True, blank=True)
     pic = models.ImageField(upload_to='users', default=None)
+    threads = models.ManyToManyField('Thread', 'users')
 
     def __str__(self):
-        return str(self.username)
+        return str(self.name)
