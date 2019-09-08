@@ -74,7 +74,7 @@ def board(request, board):
         else:
             form = NewThread()
             return render(request, "board.html",
-                          {"threads": thread_list, "board": board, "NewThread": form, "desc": desc, 'userpic': userpic})
+                          {"threads": thread_list[::-1], "board": board, "NewThread": form, "desc": desc, 'userpic': userpic})
     else:
         return HttpResponseBadRequest("<h2>Bad Request</h2>")
 
