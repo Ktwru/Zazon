@@ -228,7 +228,8 @@ a.user_link {
 
 a.thread_name {
     width: 500px;
-    height: 23px;
+    height: 100%;
+    line-height: 23px;
     position:absolute;
     left:112px;
     margin: 3px;
@@ -236,6 +237,7 @@ a.thread_name {
     overflow:hidden;
     text-overflow:ellipsis;
     font-size:18px;
+    display: block;
 }
 
 .thread_login {
