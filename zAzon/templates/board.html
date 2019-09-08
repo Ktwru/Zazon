@@ -11,34 +11,43 @@
 {% block content %}
 
 <div>
-    Threads:
+    <h1>Threads:</h1>
     {%for thread in threads%}
-    <p>
-    <table>
-    <tr align="left"><th>{{thread.date}}</th><th> {{thread.thread}} - <a href="users/{{thread.login}}">{{thread.login}}
-        {% if thread.op_pic %}
-        <img src="{{ thread.op_pic.url }}" height="50" width="50"/>
-        {% else %}
-        <img height="50" src="{% static "images/default.jpg" %}"/>
-        {% endif %}
-    </a></th></tr>
-    <tr><th><img src="{{ thread.pic.url }}" height="100"/></th><th align="left">{{thread.op_post}}</th>
-        <th align="left">{{thread.count}}{% if thread.count == 1 %} post{% else %} posts {% endif %}</th></tr>
-    <tr><th><input value="Go in thread..." type="button" onclick="location.href='{{board}}/Thread={{thread.id}}'" /></th></tr>
-    </table>
-    </p>
+    <p><div class="thread">
+
+        <div class="thread_pic"><img src="{{ thread.pic.url }}" height="100"/></div>
+        <a class="thread_name" href="{{board}}/Thread={{thread.id}}">{{thread.thread}}</a>
+
+        <div class="thread_login"><div class="user">
+            <a class="user_link" href="users/{{thread.login}}">{{thread.login}}</a>
+            <div class="user_pic"><a href="/users/{{thread.login}}">
+                {% if thread.op_pic %}
+                <img src="{{ thread.op_pic.url }}" height="35" width="35"/>
+                {% else %}
+                <img height="35" src="{% static "images/default.jpg" %}"/>
+                {% endif %}
+                </a>
+            </div></div>
+        </div>
+
+        <div class="thread_desc">{{thread.date}} - {{thread.count}}{% if thread.count == 1 %} post{% else %} posts {% endif %}</div>
+        <div class="thread_post">{{thread.op_post}}</div>
+
+
+
+    </div></p>
     {% endfor %}
     </div>
 
 {% if user.is_authenticated %}
-<div>
-    New Thread:
+<div class="NewThread">
+    <h1>New Thread:</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{NewThread}}
         </table>
-        <input type="submit" value="confirm">
+        <input type="submit" value="confirm" class="confirm">
     </form>
 </div>
 {% endif %}
