@@ -15,13 +15,20 @@
 <div class="activeusers"><h1>Most active users:</h1>
 <table>
     {% for user in active %}
-    <tr><th align="right"><a href="/users/{{user.login}}">{{user.login}}
+
+    <tr>
+        <th><div class="user">
+           <a href="/users/{{user.login}}" class="user_link">{{user.login}}</a>
+    <div class="user_pic"><a href="/users/{{user.login}}">
     {% if user.pic %}
-    <img height="50" width="50" src="{{user.pic.url}}">
+    <img height="35" width="35" src="{{user.pic.url}}">
     {% else %}
-    <img height="50" src="{% static "images/default.jpg" %}">
+    <img height="35" src="{% static "images/default.jpg" %}">
         {% endif %}</a>
+    </div></div>
+
     </th><th> - {{user.desc}}</th></tr>
+
     {% endfor %}
 </table></div>
 

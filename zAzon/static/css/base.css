@@ -35,6 +35,20 @@ div {
     padding-top: 120px;
 }
 
+.way {
+    position: relative;
+    width: 160px;
+    background-color: #1a0000;
+    margin-bottom:7px;
+    padding-left: 5px;
+}
+
+a.way {
+    display: block;
+    height: 150%;
+    padding: 2px;
+}
+
 .header {
     border-bottom: 2px ridge #b39b20;
     position:absolute;
@@ -66,7 +80,7 @@ div {
 .content {
     position:absolute;
     top:100px;
-    left:200px;
+    left:230px;
     padding-top: 20px;
     padding-left: 20px;
 }
@@ -103,4 +117,82 @@ div {
     width:300px;
     padding: 20px;
     word-wrap:break-word;
+}
+
+.bar_user {
+    position: relative;
+    width: 160px;
+    padding-bottom:14px;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+    background-color: #1a0000;
+    margin-top: 40px;
+}
+
+.bar_user_text {
+    padding-top:10px;
+    padding-left:2px;
+    width: 100px;
+    text-align:center;
+}
+
+.bar_user_pic {
+
+    position: absolute;
+    top:2px;
+    right:2px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+}
+
+.bar_user_desc{
+    position: relative;
+    width: 160px;
+    text-align:center;
+    padding-bottom:2px;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+    background-color: #210c0c;
+}
+
+.user {
+    position: relative;
+    width: 140px;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+    background-color: #1a0000;
+}
+
+.user_pic {
+
+    position: absolute;
+    top:1px;
+    right:1px;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+}
+
+a.user_link {
+    padding-left:2px;
+    vertical-align: middle;
+    height: 40px;
+    width: 100px;
+    line-height: 40px;
+    display: block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.user:hover {
+    background-color: #ffcc00;
+}
+
+.way:hover {
+    background-color: #ffcc00;
 }

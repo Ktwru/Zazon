@@ -15,25 +15,30 @@
 <div class="content">{% block content %}{% endblock content %}</div>
 
 <div class="bar">
-    <div><a href="/">GoHome</a></div>
+
     <div>
-        <li><a href="/TVs">TVs</a></li>
-        <li><a href="/Raccoons">Raccoons</a></li>
-        <li><a href="/Magic">Magic</a></li>
-        <li><a href="/Chill">Chill</a></li>
+        <div class="way"><a href="/TVs" class="way">TVs</a></div>
+        <div class="way"><a href="/Raccoons" class="way">Raccoons</a></div>
+        <div class="way"><a href="/Magic" class="way">Magic</a></div>
+        <div class="way"><a href="/Chill" class="way">Chill</a></div>
+        <div class="way"><a href="/" class="way">GoHome</a></div>
     </div>
-    <div class="bar_user">
-        {% if user.is_authenticated %}
-            <li><a href="/users/{{user.get_username}}">{{ user.get_username }}
-            {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
-            {% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}
-            </a></li>
-            <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+
+        {% if user.is_authenticated %}<div class="bar_user">
+
+        <div class="bar_user_text"<th><a href="/users/{{user.get_username}}">{{ user.get_username }}</a><br>
+        <a href="{% url 'logout'%}?next={{request.path}}">Logout</a></th></div>
+
+        <div class="bar_user_pic"><a href="/users/{{user.get_username}}">
+                {% if userpic %}<img width="50" height="50" src="{{userpic.url}}"/>
+                {% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}</a></div>
+    </div>
         {% else %}
-            <li><a href="{% url 'login'%}?next={{request.path}}">Login</a> or
-            <a href="/registration">Register</a></li>
+        <div class="bar_user_desc">
+            <a href="{% url 'login'%}?next={{request.path}}">Login</a> or
+        <a href="/registration">Register</a></div>
         {% endif %}
-    </div>
+
 </div>
 
 </body>
