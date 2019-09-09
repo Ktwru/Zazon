@@ -3,17 +3,20 @@
 {% block title %}{{details.username}}{% endblock title %}
 {% block header %}
 
-{{details.username}}
+<h1>{{details.username}}</h1>
 
 {% endblock header %}
 {% block content %}
+<div class="user_page">
+    <div class="user_page_pic">
     {% if details.pic %}
     <img height="200" width="200" src="{{details.pic.url}}">
     {% else %}
     <img src="{% static "images/default.jpg" %}">
     {% endif %}
+    </div>
 
-    <table>
+    <table class="user_page_desc">
         <tr align="left"><th>Login:</th><th>{{details.username}}</th></tr>
         <tr align="left"><th>Name:</th><th>{{details.name}}</th></tr>
         <tr align="left"><th>Info:</th><th>{{details.info}}</th></tr>
@@ -22,16 +25,16 @@
 
 {% if user_check == True %}
 
-    <p><a href="/users/{{details.username}}/edit">Edit...</a></p>
+    <p class="button"><a class="link_button" href="/users/{{details.username}}/edit">Edit...</a></p>
 
 {% endif %}
-
-<div>
-    Latest post activity:
+</div>
+<div class="user_page_activity">
+    <h1>Latest post activity:</h1>
     <table>
     {% for act in activity %}
 
-        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}<a href="{{act.ref}}"> {{act.thread}}</a></th></tr>
+        <tr align="left"><th class="small_thing">{{act.date}}</th><th> - {{act.content}}<a href="{{act.ref}}"> {{act.thread}}</a></th></tr>
 
     {% endfor %}
     </table>

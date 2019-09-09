@@ -11,7 +11,7 @@
 {% block content %}
 
 <div>
-    <h1>Threads:</h1>
+    {%if threads%}<h1>Threads:</h1>{% endif %}
     {%for thread in threads%}
     <p><div class="thread">
 

@@ -8,12 +8,12 @@
 {% block content %}
 
 
-<div>
-    <a href="/users/{{user}}">{{user}}</a> activity:
+<div class="user_page_activity">
+    <h1><a href="/users/{{user}}">{{user}}</a> activity:</h1>
     <table>
     {% for act in activity %}
 
-        <tr align="left"><th>{{act.date}}</th><th> - {{act.content}}<a href="{{act.ref}}"> {{act.thread}}</a></th></tr>
+        <tr align="left"><th class="small_thing">{{act.date}}</th><th> - {{act.content}}<a href="{{act.ref}}"> {{act.thread}}</a></th></tr>
 
     {% endfor %}
     </table>

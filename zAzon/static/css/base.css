@@ -283,3 +283,62 @@ a.thread_name {
 .confirm:hover {
     background-color:#b39b20;
 }
+
+.user_page {
+    border: 2px ridge #b39b20;
+    border-radius: 30px;
+    background-color: #210c0c;
+    position:relative;
+    top:30px;
+    margin:10px;
+    width:400px;
+    padding: 20px;
+}
+
+.user_page_pic {
+    border: 2px ridge #b39b20;
+    height:200px;
+    width:200px;S
+}
+
+.user_page_desc {
+    position:absolute;
+    left:220px;
+    top:0px;
+    margin:20px;
+    width: 200px;
+}
+
+.button {
+    position:absolute;
+    right:120px;
+    bottom:7px;
+    border: 2px ridge #b39b20;
+    border-radius: 10px;
+    height:25px;
+    width:70px;
+    text-align:center;
+}
+
+a.link_button {
+    display:block;
+    height:25px;
+    width:70px;
+    padding-top:3px;
+    padding-left:5px;
+}
+
+.button:hover {
+    background-color:#b39b20;
+}
+
+.user_page_activity {
+    margin-top:50px;
+    margin-bottom:50px;
+    margin-right:250px;
+}
+
+.small_thing {
+    width:170px;
+    vertical-align:top;
+}

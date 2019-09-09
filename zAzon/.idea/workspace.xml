@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0adb762a-07ec-4bc1-a376-04df1d7cbbde" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/MAIN_APP/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAIN_APP/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/board.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_activity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_page.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,19 +44,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/main_page.html">
+        <entry file="file://$PROJECT_DIR$/templates/user_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+            <state relative-caret-position="204">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/board.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/user_activity.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+            <state relative-caret-position="255">
+              <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -60,17 +64,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/base.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+            <state relative-caret-position="348">
+              <caret line="335" column="20" lean-forward="true" selection-start-line="335" selection-start-column="20" selection-end-line="335" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MAIN_APP/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+            <state>
+              <caret line="59" column="50" lean-forward="true" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -112,14 +116,14 @@
         <option value="$PROJECT_DIR$/templates/registration/edit.html" />
         <option value="$PROJECT_DIR$/templates/registration/registration.html" />
         <option value="$PROJECT_DIR$/templates/thread.html" />
-        <option value="$PROJECT_DIR$/templates/user_page.html" />
-        <option value="$PROJECT_DIR$/templates/user_activity.html" />
         <option value="$PROJECT_DIR$/templates/main_page.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/MAIN_APP/forms.py" />
+        <option value="$PROJECT_DIR$/MAIN_APP/views.py" />
         <option value="$PROJECT_DIR$/templates/board.html" />
         <option value="$PROJECT_DIR$/static/css/base.css" />
-        <option value="$PROJECT_DIR$/MAIN_APP/views.py" />
+        <option value="$PROJECT_DIR$/templates/user_page.html" />
+        <option value="$PROJECT_DIR$/templates/user_activity.html" />
       </list>
     </option>
   </component>
@@ -283,7 +287,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4985119" weight="0.3289689" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49925596" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" visible="true" weight="0.26350245" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.26350245" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49925596" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -296,13 +300,13 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925596" weight="0.2651391" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4985119" weight="0.3289689" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49925596" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.2651391" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" visible="true" weight="0.26350245" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49925596" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -466,20 +470,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user_activity.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zAzon/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
@@ -525,27 +515,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/base.css">
+    <entry file="file://$PROJECT_DIR$/templates/board.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+        <state relative-caret-position="45">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/board.html">
+    <entry file="file://$PROJECT_DIR$/templates/user_page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+        <state relative-caret-position="204">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MAIN_APP/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+        <state>
+          <caret line="59" column="50" lean-forward="true" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="335" column="20" lean-forward="true" selection-start-line="335" selection-start-column="20" selection-end-line="335" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/user_activity.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
         </state>
       </provider>
     </entry>
