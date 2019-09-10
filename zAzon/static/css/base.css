@@ -1,6 +1,9 @@
 html{
-    background-color: #1a0000;
+        background-image: url(http://127.0.0.1:8000/static/images/space.png);
+    background-repeat: repeat;
     list-style-type: none;
+    background-attachment: fixed;
+    background-size:cover;
 }
 
 a {
@@ -269,6 +272,51 @@ a.thread_name {
     margin-left:170px;
 }
 
+.post {
+    width: 750px;
+    height: 100%;
+    position: relative;
+    border: 2px ridge #b39b20;
+    border-radius: 15px;
+    background-color: #210c0c;
+    margin-left: 50px;
+    overflow:hidden;
+    padding-bottom:10px;
+}
+
+.post_pic {
+    position:relative;
+    height:100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display:inline-block;
+    float:left;
+
+}
+
+.post_desc {
+    position:relative;
+    margin:10px;
+    font-size:12px;
+    display:inline-block;
+}
+
+.post_post {
+    margin-top:15px;
+    margin-left:10px;
+    text-overflow:ellipsis;
+}
+
+.post_status {
+    display:inline-block;
+    width:auto;
+    margin:10px;
+    padding-top:5px;
+    font-size:12px;
+    border-top: 2px ridge #b39b20;
+}
+
 .confirm {
     height:30px;
     width:100px;
@@ -277,7 +325,7 @@ a.thread_name {
     border-radius: 15px;
     margin-top:20px;
     margin-left:105px;
-    margin-bottom:100px;
+    margin-bottom:50px;
 }
 
 .confirm:hover {

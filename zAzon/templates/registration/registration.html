@@ -3,7 +3,7 @@
 {% block header %}Registration{% endblock header %}
 {% block content %}
 {{error}}
-<form method = "POST" enctype="multipart/form-data">
+<form method = "POST" enctype="multipart/form-data" class="NewThread">
     {% csrf_token %}
 <table>
     {{step1}}
@@ -11,6 +11,6 @@
 <table>
     {{step2}}
 </table>
-    <input type="submit" value="confirm">
+    <input type="submit" value="confirm" class="confirm">
 </form>
 {% endblock content %}

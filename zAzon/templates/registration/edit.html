@@ -2,12 +2,12 @@
 {% block title %}{% endblock title %}
 {% block header %}Edit:{% endblock header %}
 {% block content %}
-<p>{{username}}:</p>
+<h1>{{username}}:</h1>
 <form method = "POST" enctype="multipart/form-data">
     {% csrf_token %}
 <table>
     {{form}}
 </table>
-    <input type="submit" value="confirm">
+    <input type="submit" value="confirm" class="confirm">
 </form>
 {% endblock content %}

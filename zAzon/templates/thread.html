@@ -1,44 +1,72 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{{thread.thread}}{% endblock title %}
-{% block header %}{{board}},{{thread.thread}}
+{% block header %}<h1>{{board}}</h1>
 <div>
         {{desc}}
 </div>
 
 {% endblock header %}
 {% block content %}
-{% if thread.op_pic %}<img src="{{thread.op_pic.url}}" height="50" width="50"/>{% else %}<img height="50" src="{% static "images/default.jpg" %}">{% endif %}
-<div><img src="{{ thread.pic.url }}" height="100"/> - {{thread.date}} - {{thread.thread}} - <a href="/users/{{thread.login}}">{{thread.login}}</a></div>
-<div>{{thread.op_post}}</div>
 
-<div>
-    {% for post in posts %}
+<div class="thread">
+     <div class="thread_pic"><img src="{{ thread.pic.url }}" height="100"/></div>
+        <a class="thread_name" href="/{{board}}/Thread={{thread.id}}">{{thread.thread}}</a>
 
-    {% if post.user_pic %}
-    <img height="50" width="50" src="{{post.user_pic.url}}">
-    {% else %}
-    <img height="50" src="{% static "images/default.jpg" %}">
-    {% endif %}
+        <div class="thread_login"><div class="user">
+            <a class="user_link" href="users/{{thread.login}}">{{thread.login}}</a>
+            <div class="user_pic"><a href="/users/{{thread.login}}">
+                {% if thread.op_pic %}
+                <img src="{{ thread.op_pic.url }}" height="35" width="35"/>
+                {% else %}
+                <img height="35" src="{% static "images/default.jpg" %}"/>
+                {% endif %}
+                </a>
+            </div></div>
+        </div>
 
-    {% if post.pic %}<img src="{{ post.pic.url }}" height="100"/>{% endif %}
-    <li>{{post.date}} - {{post.post}} - <a href="/users/{{post.login}}">{{post.login}}</a></li>
-    {{post.status}}
+        <div class="thread_desc">{{thread.date}} - {{thread.count}}{% if thread.count == 1 %} post{% else %} posts {% endif %}</div>
+        <div class="thread_post">{{thread.op_post}}</div>
 
-    {% endfor %}
 </div>
 
-<input value="Update" type="button" onclick="location.href='{{request.path}}'" />
+    {%for post in posts%}
+    <p><div class="post">
+
+        {% if post.pic %}<div class="post_pic"><img src="{{ post.pic.url }}" height="100"/></div>{% endif %}
+
+        <div class="thread_login"><div class="user">
+            <a class="user_link" href="users/{{post.login}}">{{post.login}}</a>
+            <div class="user_pic"><a href="/users/{{post.login}}">
+                {% if post.op_pic %}
+                <img src="{{ post.op_pic.url }}" height="35" width="35"/>
+                {% else %}
+                <img height="35" src="{% static "images/default.jpg" %}"/>
+                {% endif %}
+                </a>
+            </div></div>
+        </div>
+
+        <div class="post_desc">{{post.date}}</div>
+        <div class="post_post">{{post.post}}</div>
+        <div class="post_status">{{post.status}}</div>
+
+
+    </div></p>
+    {% endfor %}
+
+
+<input value="Update" type="button" onclick="location.href='{{request.path}}'" class="confirm"/>
 
 {% if user.is_authenticated %}
-<div>
+<div class="NewThread">
     Post:
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{NewPost}}
         </table>
-        <input type="submit" value="confirm">
+        <input type="submit" value="confirm" class="confirm">
     </form>
 </div>
 {% endif %}
