@@ -108,13 +108,14 @@ def thread(request, board, thread_id):
                      "count": Post.objects.filter(thread=thread).count(),
                      "id": thread.id}
         if request.method == 'POST':
-            post = request.POST.get('post')
-            if 'pic' in request.FILES:
-                file = request.FILES['pic']
-            else:
-                file = None
-            login = User.objects.get(username=request.user.username)
-            new_post = Post.objects.create(thread=thread, post=post, login=login, pic=file)
+            if 'post' in request.POST:
+                post = request.POST.get('post')
+                if 'pic' in request.FILES:
+                    file = request.FILES['pic']
+                else:
+                    file = None
+                login = User.objects.get(username=request.user.username)
+                new_post = Post.objects.create(thread=thread, post=post, login=login, pic=file)
 
             return HttpResponsePermanentRedirect(request.path)
         else:

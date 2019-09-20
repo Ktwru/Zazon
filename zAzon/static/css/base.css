@@ -7,15 +7,15 @@ html{
 }
 
 a {
-    color: #8800ff;
+    color: white;
 }
 
 a:hover {
-    color: #b3006e;
+    color: #d1008c;
 }
 
 h1 {
-        color: #ffcc00;
+        color: #d1008c;
 
 }
 
@@ -23,17 +23,17 @@ div {
     font-size: 15px;
     font-family: 'Nunito', sans-serif;
     text-shadow: -1px -1px -2px #ffe76b;
-    color: #b39b20;
+    color: white;
 }
 
 .main {
-    color: #ffcc00;
+    color: white;
 }
 
 .bar {
-    border-right: 2px ridge #b39b20;
+    border-right: 2px solid white;
     height: 100%;
-    background-color: #2e0000;
+    background-color: #041d45;
     position:fixed;
     top:0px;
     left:0;
@@ -46,7 +46,7 @@ div {
 .way {
     position: relative;
     width: 160px;
-    background-color: #1a0000;
+    background-color: #020f24;
     margin-bottom:7px;
     padding-left: 5px;
     border-radius: 10px;
@@ -60,18 +60,18 @@ a.way {
 }
 
 .header {
-    border-bottom: 2px ridge #b39b20;
+    border-bottom: 2px solid white;
     position:absolute;
     z-index: 3;
     left: 0px;
     top: 0px;
     width:100%;
     height: 100px;
-    background-color: #3b1212;
+    background-color: #0850c4;
     padding-left: 150px;
     padding-top: 10px;
     text-align: left;
-    color: #ffcc00;
+    color: white;
 }
 
 .miniheader {
@@ -81,10 +81,10 @@ a.way {
     left: 0px;
     width:180px;
     height: 120px;
-    background-color: #2e0000;
+    background-color: #041d45;
     padding-left: 20px;
     margin: 0px;
-    color: #ffcc00;
+    color: white;
 }
 
 .content {
@@ -96,9 +96,9 @@ a.way {
 }
 
 .activeusers {
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 30px;
-    background-color: #210c0c;
+    background-color: #041d45;
     position:absolute;
     top:30px;
     left:400px;
@@ -107,9 +107,9 @@ a.way {
 }
 
 .count {
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 30px;
-    background-color: #210c0c;
+    background-color: #041d45;
     position:absolute;
     top:30px;
     left:30px;
@@ -118,9 +118,9 @@ a.way {
 }
 
 .main_desc {
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 30px;
-    background-color: #210c0c;
+    background-color: #041d45;
     position:absolute;
     top:270px;
     left:30px;
@@ -133,9 +133,9 @@ a.way {
     position: relative;
     width: 160px;
     padding-bottom:14px;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
-    background-color: #1a0000;
+    background-color: #020f24;
     margin-top: 40px;
 }
 
@@ -156,8 +156,12 @@ a.way {
     height: 50px;
     width: 50px;
     overflow: hidden;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
+}
+
+.bar_user_pic:hover {
+    border: 1px solid #d1008c;
 }
 
 .bar_user_desc{
@@ -165,7 +169,7 @@ a.way {
     width: 160px;
     text-align:center;
     padding-bottom:2px;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
     background-color: #210c0c;
 }
@@ -173,9 +177,9 @@ a.way {
 .user {
     position: relative;
     width: 140px;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
-    background-color: #1a0000;
+    background-color: #020f24;
 }
 
 .user_pic {
@@ -186,7 +190,7 @@ a.way {
     height: 35px;
     width: 35px;
     overflow: hidden;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
 }
 
@@ -203,20 +207,21 @@ a.user_link {
 }
 
 .user:hover {
-    background-color: #ffcc00;
+    border: 1px solid #d1008c;
 }
 
 .way:hover {
-    background-color: #ffcc00;
+    background-color: #d1008c;
+    color:white;
 }
 
 .thread {
     width: 800px;
     height: 110px;
     position: relative;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
-    background-color: #210c0c;
+    background-color: #041d45;
 }
 
 .thread_pic {
@@ -224,7 +229,7 @@ a.user_link {
     position:absolute;
     height:100px;
     width:100px;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
     margin: 3px;
     background-color: black;
@@ -257,6 +262,7 @@ a.thread_name {
     top: 20px;
     margin:3px;
     font-size:12px;
+    color: grey;
 }
 
 .thread_post {
@@ -276,9 +282,9 @@ a.thread_name {
     width: 750px;
     height: 100%;
     position: relative;
-    border: 2px ridge #b39b20;
+    border: 1px solid white;
     border-radius: 15px;
-    background-color: #210c0c;
+    background-color: #041d45;
     margin-left: 50px;
     overflow:hidden;
     padding-bottom:10px;
@@ -300,6 +306,11 @@ a.thread_name {
     margin:10px;
     font-size:12px;
     display:inline-block;
+    color: grey;
+}
+
+.post_rate {
+    display:inline-block;
 }
 
 .post_post {
@@ -314,28 +325,31 @@ a.thread_name {
     margin:10px;
     padding-top:5px;
     font-size:12px;
-    border-top: 2px ridge #b39b20;
+    border-top: 1px ridge grey;
+    color: grey;
 }
 
 .confirm {
     height:30px;
     width:100px;
-    background-color:#210c0c;
-    border: 2px ridge #b39b20;
+    background-color:#020f24;
+    border: 1px ridge white;
     border-radius: 15px;
     margin-top:20px;
     margin-left:105px;
     margin-bottom:50px;
+    color: white;
 }
 
 .confirm:hover {
-    background-color:#b39b20;
+    border: 1px solid #d1008c;
+    color:#d1008c;
 }
 
 .user_page {
-    border: 2px ridge #b39b20;
+    border: 1px ridge white;
     border-radius: 30px;
-    background-color: #210c0c;
+    background-color: #041d45;
     position:relative;
     top:30px;
     margin:10px;
@@ -344,7 +358,7 @@ a.thread_name {
 }
 
 .user_page_pic {
-    border: 2px ridge #b39b20;
+    border: 1px ridge white;
     height:200px;
     width:200px;S
 }
@@ -361,11 +375,13 @@ a.thread_name {
     position:absolute;
     right:120px;
     bottom:7px;
-    border: 2px ridge #b39b20;
+    border: 1px ridge white;
     border-radius: 10px;
     height:25px;
     width:70px;
     text-align:center;
+    color:white;
+    background-color:#020f24;
 }
 
 a.link_button {
@@ -377,7 +393,7 @@ a.link_button {
 }
 
 .button:hover {
-    background-color:#b39b20;
+    border: 1px solid #d1008c;
 }
 
 .user_page_activity {
