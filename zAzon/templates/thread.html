@@ -38,8 +38,8 @@
         <div class="thread_login"><div class="user">
             <a class="user_link" href="users/{{post.login}}">{{post.login}}</a>
             <div class="user_pic"><a href="/users/{{post.login}}">
-                {% if post.op_pic %}
-                <img src="{{ post.op_pic.url }}" height="35" width="35"/>
+                {% if post.user_pic %}
+                <img src="{{ post.user_pic.url }}" height="35" width="35"/>
                 {% else %}
                 <img height="35" src="{% static "images/default.jpg" %}"/>
                 {% endif %}
